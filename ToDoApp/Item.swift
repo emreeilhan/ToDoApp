@@ -8,11 +8,31 @@
 import Foundation
 import SwiftData
 
-@Model
-final class Item {
-    var timestamp: Date
+enum Priority: String,CaseIterable,Codable,Identifiable {
+    var id: String { self.rawValue }
     
-    init(timestamp: Date) {
-        self.timestamp = timestamp
-    }
+    case low = "Low"
+    case normal = "Normal"
+    case high = "High"
 }
+
+
+@Model
+final class Task {
+    var title: String
+    var isCompleted: Bool
+    var date: Date
+    var priority: Priority
+    
+    init(title: String, isCompleted: Bool, date: Date, priority: Priority) {
+        self.title = title
+        self.isCompleted = isCompleted
+        self.date = date
+        self.priority = priority
+    }
+    
+    
+}
+
+
+//let birTask = Task(title: "Do homework", isCompleted: false, date: Date(), priority: .high)
